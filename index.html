@@ -5,17 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Birine Özel ❤️</title>
 
-<!-- Google Fonts: Pinyon Script -->
-<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
-
 <style>
+/* Super Chunky fontunu gömme */
+@font-face {
+    font-family: 'Super Chunky';
+    src: url('SuperChunky.woff2') format('woff2'),
+         url('SuperChunky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(to bottom right, #ff4da6, #000000); /* pembe-siyah arka plan */
+    font-family: "Super Chunky", Arial, sans-serif;
+    background: linear-gradient(to bottom right, #ff4da6, #000000);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,15 +64,18 @@ html, body {
 #panel {
     margin-top: 80px;
     padding: 30px 25px;
-    background: #000; /* düz siyah */
+    background: #000;
     border-radius: 25px;
-    min-height: 120px;
-    max-width: 650px;
+    min-height: 180px;
+    max-width: 700px;
     text-align: center;
     color: white;
-    font-size: 26px;
-    display: none; /* Başta gizli */
-    font-family: 'Pinyon Script', cursive; /* yeni havalı font */
+    font-size: 28px;
+    display: none;
+    font-family: 'Super Chunky', cursive;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Yazı animasyonu */
@@ -107,37 +116,39 @@ html, body {
 
 <script>
 const messages = [
-    "Sen benim en güzel tesadüfümsün.",
-    "Hayatımda senin gibi birini bulmak mucize.",
-    "Gözlerin huzurun en saf hali.",
-    "Gülüşün dünyamı aydınlatıyor.",
-    "Yanında olduğumda her şey daha güzel.",
-    "Sen benim en değerli hayalim.",
-    "Kalbim seninle ritmini buldu.",
-    "Sana bakınca geleceği görmek umut dolu.",
-    "Seni sevmek hayatımın en tatlı duası.",
-    "Sen benim en büyük şansım.",
-    "Her anım seninle anlamlı.",
-    "Seninle dünya daha renkli.",
-    "Sen benim en güzel hikayemsin.",
-    "Kalbim seninle tamamlandı.",
-    "Seninle her şey daha kolay.",
-    "Sen benim en özel sırlarımsın.",
-    "Seninle hayat daha tatlı.",
-    "Sen benim en güzel melodimsin.",
-    "Seninle zaman duruyor.",
-    "Sen benim en parlak yıldızımsın.",
-    "Seninle her gün bayram.",
-    "Sen benim en güzel düşümsün.",
-    "Seninle her şey anlamlı.",
-    "Sen benim en değerli armağanımsın.",
-    "Seninle hayatım tamamlandı.",
-    "Sen benim en güzel şiirimsin.",
-    "Seninle kalbim huzur buluyor.",
-    "Sen benim en büyük mutluluğumsun.",
-    "Seninle her şey daha özel.",
+    "Sen benim en güzel tesadüfümsün",
+    "Hayatımda senin gibi birini bulmak mucize",
+    "Gözlerin huzurun en saf hali",
+    "Gülüşün dünyamı aydınlatıyor",
+    "Yanında olduğumda her şey daha güzel",
+    "Sen benim en değerli hayalim",
+    "Kalbim seninle ritmini buldu",
+    "Sana bakınca geleceği görmek umut dolu",
+    "Seni sevmek hayatımın en tatlı duası",
+    "Sen benim en büyük şansım",
+    "Her anım seninle anlamlı",
+    "Seninle dünya daha renkli",
+    "Sen benim en güzel hikayemsin",
+    "Kalbim seninle tamamlandı",
+    "Seninle her şey daha kolay",
+    "Sen benim en özel sırlarımsın",
+    "Seninle hayat daha tatlı",
+    "Sen benim en güzel melodimsin",
+    "Seninle zaman duruyor",
+    "Sen benim en parlak yıldızımsın",
+    "Seninle her gün bayram",
+    "Sen benim en güzel düşümsün",
+    "Seninle her şey anlamlı",
+    "Sen benim en değerli armağanımsın",
+    "Seninle hayatım tamamlandı",
+    "Sen benim en güzel şiirimsin",
+    "Seninle kalbim huzur buluyor",
+    "Sen benim en büyük mutluluğumsun",
+    "Seninle her şey daha özel",
     "Sonsuza kadar seni seveceğim ❤️"
 ];
+
+const hearts = ["💖", "💘", "💝", "💕", "💞", "💓", "💗", "💜", "🤍", "💛", "🧡"];
 
 const textDiv = document.getElementById("text");
 const startBtn = document.getElementById("startBtn");
@@ -146,23 +157,28 @@ const panel = document.getElementById("panel");
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 async function startAnimation() {
-    document.getElementById("notification").style.display = "none"; // Bildirimi kaldır
-    panel.style.display = "block"; // Kutuyu göster
+    document.getElementById("notification").style.display = "none";
+    panel.style.display = "flex";
+
     for (let i = 0; i < messages.length; i++) {
-        textDiv.textContent = messages[i];
+        const heart1 = hearts[Math.floor(Math.random() * hearts.length)];
+        const heart2 = hearts[Math.floor(Math.random() * hearts.length)];
+        textDiv.textContent = `${heart1} ${messages[i]} ${heart2}`;
         textDiv.className = "";
-        void textDiv.offsetWidth; // animasyonu yeniden başlat
+        void textDiv.offsetWidth;
         textDiv.className = "fadeInOut";
-        await sleep(3000); // her mesaj 3 saniye
+        await sleep(3000);
     }
+
     // Finalde büyük kalp
     textDiv.textContent = "❤️";
     textDiv.style.fontSize = "80px";
 }
 
+// Buton
 startBtn.addEventListener("click", startAnimation);
 
-// Kalpler oluşturma
+// Alt kısımdan yukarı kalpler
 function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
