@@ -11,7 +11,7 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: Arial, sans-serif; /* düz yazı */
+    font-family: Arial, sans-serif; /* düz yazı, tüm cihazlarda çalışır */
     background: linear-gradient(to bottom right, #ff4da6, #000000);
     display: flex;
     align-items: center;
@@ -107,14 +107,14 @@ html, body {
 <script>
 const messages = [
     "Seninle her an daha anlamlı",
-    "Gülüşün en karanlık günümü bile aydınlatıyor",
-    "Yanındayken zaman duruyor",
+    "Gülüşün, gördüğüm en güzel manzara",
+    "Bakışlarında kaybolmak en sevdiğim aktivite",
     "Sen benim huzur kaynağımsın",
     "Her an seninle özel",
     "Seninle hayat daha güzel",
     "Sen benim en değerli tesadüfümsün",
-    "Kalbim seninle ritmini buluyor",
-    "Sen benim en güvenli limanımsın",
+    "Bir bakışınla tüm yorgunluğumu alıyorsun",
+    "Seninle geçen her saniye, ömrüme ömür katıyor",
     "Sana bakınca mutluluk doluyorum",
     "Seninle her şey daha kolay",
     "Sen benim en güzel hikayemsin",
@@ -122,20 +122,20 @@ const messages = [
     "Kalbim seninle tamamlandı",
     "Sen benim en özel sırlarımsın",
     "Seninle hayat daha tatlı",
-    "Sen benim en güzel melodimsin",
+    "Sadece yüzün değil, ruhun da pırlanta gibi",
     "Sen benim en parlak yıldızımsın",
-    "Seninle her gün bayram gibi",
-    "Sen benim en güzel düşümsün",
+    "Her halinle o kadar kusursuzsun ki...",
+    "Seninle gurur duyuyorum, her şeyinle",
     "Seninle her şey anlamlı",
     "Sen benim en değerli armağanımsın",
-    "Seninle hayatım tamamlandı",
-    "Sen benim en güzel şiirimsin",
+    "Bana kattığın her şey için sana minnettarım",
+    "Hayatımda verdiğim en doğru kararsın",
     "Seninle kalbim huzur buluyor",
     "Sen benim en büyük mutluluğumsun",
     "Sonsuza kadar seni seveceğim ❤️"
 ];
 
-const hearts = ["💖", "💘", "💝", "💕", "💞", "💓", "💗", "💜", "🤍", "💛", "🧡"];
+const hearts = ["💖", "💘", "💝", "💕", "💞", "💓", "💗", "🎀​", "🤍", "💋​", "🧡"];
 
 const textDiv = document.getElementById("text");
 const startBtn = document.getElementById("startBtn");
@@ -148,15 +148,14 @@ async function startAnimation() {
     panel.style.display = "flex";
 
     for (let i = 0; i < messages.length; i++) {
-        const heart1 = hearts[Math.floor(Math.random() * hearts.length)];
-        const heart2 = hearts[Math.floor(Math.random() * hearts.length)];
-        
-        // Son mesaj farklı: tarih ve kalp
         if (i === messages.length - 1) {
+            // Son mesaj: tarih + kalp, animasyondan bağımsız
             textDiv.textContent = "27.11.2023 19:27 ❤️";
             textDiv.style.fontSize = "32px";
             textDiv.style.opacity = "1";
         } else {
+            const heart1 = hearts[Math.floor(Math.random() * hearts.length)];
+            const heart2 = hearts[Math.floor(Math.random() * hearts.length)];
             textDiv.textContent = `${heart1} ${messages[i]} ${heart2}`;
             textDiv.className = "";
             void textDiv.offsetWidth;
@@ -167,7 +166,6 @@ async function startAnimation() {
     }
 }
 
-// Buton
 startBtn.addEventListener("click", startAnimation);
 
 // Alt kısımdan yukarı kalpler
