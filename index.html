@@ -5,16 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Birine Özel ❤️</title>
 
-<!-- Google Fonts: Luckiest Guy -->
-<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
-
 <style>
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: 'Luckiest Guy', cursive;
+    font-family: Arial, sans-serif; /* düz yazı */
     background: linear-gradient(to bottom right, #ff4da6, #000000);
     display: flex;
     align-items: center;
@@ -99,7 +96,7 @@ html, body {
 <body>
 
 <div id="notification">
-    <div>🌹 Bu site dünyanın en güzel en iyi sevgilisine hazırlanmıştır 🌹</div>
+    <div>🌹 Bu site özel birisine hazırlanmıştır 🌹</div>
     <button id="startBtn">❤️ Başlat</button>
 </div>
 
@@ -109,27 +106,25 @@ html, body {
 
 <script>
 const messages = [
-    "Sen benim en güzel tesadüfümsün",
-    "Hayatımda senin gibi birini bulmak mucize",
-    "Gözlerin huzurun en saf hali",
-    "Gülüşün dünyamı aydınlatıyor",
-    "Yanında olduğumda her şey daha güzel",
-    "Sen benim en değerli hayalim",
-    "Kalbim seninle ritmini buldu",
-    "Sana bakınca geleceği görmek umut dolu",
-    "Seni sevmek hayatımın en tatlı duası",
-    "Sen benim en büyük şansım",
-    "Her anım seninle anlamlı",
-    "Seninle dünya daha renkli",
-    "Sen benim en güzel hikayemsin",
-    "Kalbim seninle tamamlandı",
+    "Seninle her an daha anlamlı",
+    "Gülüşün en karanlık günümü bile aydınlatıyor",
+    "Yanındayken zaman duruyor",
+    "Sen benim huzur kaynağımsın",
+    "Her an seninle özel",
+    "Seninle hayat daha güzel",
+    "Sen benim en değerli tesadüfümsün",
+    "Kalbim seninle ritmini buluyor",
+    "Sen benim en güvenli limanımsın",
+    "Sana bakınca mutluluk doluyorum",
     "Seninle her şey daha kolay",
+    "Sen benim en güzel hikayemsin",
+    "Seninle dünya daha renkli",
+    "Kalbim seninle tamamlandı",
     "Sen benim en özel sırlarımsın",
     "Seninle hayat daha tatlı",
     "Sen benim en güzel melodimsin",
-    "Seninle zaman duruyor",
     "Sen benim en parlak yıldızımsın",
-    "Seninle her gün bayram",
+    "Seninle her gün bayram gibi",
     "Sen benim en güzel düşümsün",
     "Seninle her şey anlamlı",
     "Sen benim en değerli armağanımsın",
@@ -137,7 +132,6 @@ const messages = [
     "Sen benim en güzel şiirimsin",
     "Seninle kalbim huzur buluyor",
     "Sen benim en büyük mutluluğumsun",
-    "Seninle her şey daha özel",
     "Sonsuza kadar seni seveceğim ❤️"
 ];
 
@@ -156,16 +150,21 @@ async function startAnimation() {
     for (let i = 0; i < messages.length; i++) {
         const heart1 = hearts[Math.floor(Math.random() * hearts.length)];
         const heart2 = hearts[Math.floor(Math.random() * hearts.length)];
-        textDiv.textContent = `${heart1} ${messages[i]} ${heart2}`;
-        textDiv.className = "";
-        void textDiv.offsetWidth;
-        textDiv.className = "fadeInOut";
+        
+        // Son mesaj farklı: tarih ve kalp
+        if (i === messages.length - 1) {
+            textDiv.textContent = "27.11.2023 19:27 ❤️";
+            textDiv.style.fontSize = "32px";
+            textDiv.style.opacity = "1";
+        } else {
+            textDiv.textContent = `${heart1} ${messages[i]} ${heart2}`;
+            textDiv.className = "";
+            void textDiv.offsetWidth;
+            textDiv.className = "fadeInOut";
+        }
+
         await sleep(3000);
     }
-
-    // Finalde büyük kalp
-    textDiv.textContent = "❤️";
-    textDiv.style.fontSize = "80px";
 }
 
 // Buton
