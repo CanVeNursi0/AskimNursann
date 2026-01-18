@@ -11,10 +11,11 @@ html, body {
     width: 100%;
     height: 100%;
     font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(to bottom, #050508, #1a0008);
+    background: linear-gradient(to bottom right, #ff4da6, #000000); /* pembe-siyah arka plan */
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 /* Bildirim kutusu */
@@ -53,7 +54,7 @@ html, body {
 #panel {
     margin-top: 80px;
     padding: 30px 25px;
-    background: linear-gradient(to bottom right, #990000, #000000);
+    background: linear-gradient(to bottom right, #990000, #000000); /* kırmızı-siyah kutu */
     border-radius: 25px;
     min-height: 120px;
     max-width: 650px;
@@ -72,6 +73,19 @@ html, body {
     20% { opacity: 1; transform: translateY(0); }
     80% { opacity: 1; }
     100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Kalpler animasyonu */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    color: white;
+    font-size: 14px;
+    animation: floatUp linear forwards;
+}
+@keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-700px); opacity: 0; }
 }
 </style>
 </head>
@@ -131,6 +145,9 @@ async function startAnimation() {
     panel.style.display = "block"; // Kutuyu göster
     for (let msg of messages) {
         textDiv.textContent = msg;
+        // animasyonu yeniden başlatmak için önce sınıfı sil, sonra ekle
+        textDiv.className = "";
+        void textDiv.offsetWidth;
         textDiv.className = "fadeInOut";
         await sleep(3000); // Her mesaj 3 saniye ekranda
     }
@@ -140,6 +157,19 @@ async function startAnimation() {
 }
 
 startBtn.addEventListener("click", startAnimation);
+
+// Kalpler oluşturma
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "❤";
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.fontSize = (10 + Math.random() * 10) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+}
+setInterval(createHeart, 500);
 </script>
 </body>
 </html>
