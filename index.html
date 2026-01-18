@@ -4,6 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Birine Özel ❤️</title>
+
+<!-- Google Fonts: Pinyon Script -->
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+
 <style>
 html, body {
     margin: 0;
@@ -54,14 +58,15 @@ html, body {
 #panel {
     margin-top: 80px;
     padding: 30px 25px;
-    background: linear-gradient(to bottom right, #990000, #000000); /* kırmızı-siyah kutu */
+    background: #000; /* düz siyah */
     border-radius: 25px;
     min-height: 120px;
     max-width: 650px;
     text-align: center;
     color: white;
-    font-size: 22px;
+    font-size: 26px;
     display: none; /* Başta gizli */
+    font-family: 'Pinyon Script', cursive; /* yeni havalı font */
 }
 
 /* Yazı animasyonu */
@@ -143,13 +148,12 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 async function startAnimation() {
     document.getElementById("notification").style.display = "none"; // Bildirimi kaldır
     panel.style.display = "block"; // Kutuyu göster
-    for (let msg of messages) {
-        textDiv.textContent = msg;
-        // animasyonu yeniden başlatmak için önce sınıfı sil, sonra ekle
+    for (let i = 0; i < messages.length; i++) {
+        textDiv.textContent = messages[i];
         textDiv.className = "";
-        void textDiv.offsetWidth;
+        void textDiv.offsetWidth; // animasyonu yeniden başlat
         textDiv.className = "fadeInOut";
-        await sleep(3000); // Her mesaj 3 saniye ekranda
+        await sleep(3000); // her mesaj 3 saniye
     }
     // Finalde büyük kalp
     textDiv.textContent = "❤️";
@@ -169,7 +173,7 @@ function createHeart() {
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 8000);
 }
-setInterval(createHeart, 500);
+setInterval(createHeart, 300);
 </script>
 </body>
 </html>
